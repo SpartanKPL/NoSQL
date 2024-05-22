@@ -1,0 +1,110 @@
+# MongoDB Exercises
+***
+
+### Basic commands:
+
+```
+use (databasename)
+
+db.createCollection("collectionname")`
+
+db.(collectionname).insertOne({})
+
+db.(collectionname).insertMany([{},{}])
+
+db.getCollectionNames()
+
+db.(collectionname).find({query},{projection})
+
+db.(collectionname).updateOne({filter}, {$set: {update}})
+
+db.(collectionname).deleteOne({filter})
+```
+### Exercise 1
+
+Create a collection to store information about your favourite films. Add appropriate validation rules, then insert at least 3 documents. Practice using both .insertOne() and .insertMany(). You may want to type commands into a text editor then paste into the shell.
+```
+use movies 
+
+db.movies.insertOne({name:"Lion King", release_year: new Date("1994-10-07"), box_office: 968400000, IMDB: 8.5})
+
+db.movies.insertMany([{name:"The Incredibles", release_year: new Date("2004-11-26"), box_office: 631600000, IMDB: 8},{name:"Spider-Man: Into the Spider-Verse", release_year: new Date("2004-11-26"), box_office: 384300000, IMDB: 8.4}])
+```
+### Exercise 2
+
+Add a new document to the collection, add a new field to that document, remove that field and then remove the document entirely.
+
+```
+db.movies.insertOne({name:"Dracula", release_year: new Date("1897-05-26"), box_office: 0, IMDB: 0})
+
+db.movies.updateOne({name:"Dracula"}, {$set: {author: "Bram Stoker"}})
+
+db.movies.deleteOne({name:"Dracula"})
+```
+
+### Exercise 5
+
+Write a query that finds the Luke Skywalker document
+
+`db.characters.find({name: "Luke Skywalker"})`
+
+Return the value of name and eye_colour only, from the "chewbacca" document
+
+`db.characters.find({name: "Chewbacca"},{_id:false, name:true, eye_color:true})`
+
+Find a way to check the species name of admiral ackbar, this is in an embedded document ("Species")
+
+`db.characters.find({name: "Ackbar"}, {_id:false, "species.name":true})`
+
+### Exercise 6 
+
+Write a query that gives us only the names + homeworld names of humans in the database?
+
+`db.characters.find({"species.name": "Human"}, {_id:false, name:true, homeworld:true})`
+
+### Exercise 7
+
+Write a query that gives us all the entries that have an eye_colour of either "yellow" or "orange"
+
+`db.characters.find({$or: [{eye_color:"yellow"},{eye_colour:"orange"}]})`
+
+### Exercise 8
+
+You can combine filters using $and or $ or
+
+Write a query that filter for characters that have both blue eyes and are female
+
+`db.characters.find({$and: [{eye_color:"blue"},{gender:"female"}]})`
+
+Then write a query that filters for characters that have either blue eyes or are female
+
+`db.characters.find({$or: [{eye_color:"yellow"},{eye_colour:"orange"}]})`
+
+### Exercise 8
+
+You can use comparison operators in your queries
+
+`db.characters.find({mass:{$lt:"100"}})`
+
+Write a query that finds characters with a height over 200cm
+
+`db.characters.find({height:{$gt:"200"}})`
+
+Note, Height has been recorded as a string and there are some missing a height value entirely. Can you find out how to convert all the height strings to ints?
+
+
+Run your initial height query again to confirm your solution works.
+
+Exercise 9
+
+Experiment with the following operators. What does each do?
+
+$eq
+$gt
+$gte
+$in
+$lt
+$lte
+$ne
+$nin
+a
