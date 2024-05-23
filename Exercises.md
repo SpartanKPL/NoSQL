@@ -80,7 +80,7 @@ Then write a query that filters for characters that have either blue eyes or are
 
 `db.characters.find({$or: [{eye_color:"yellow"},{eye_colour:"orange"}]})`
 
-### Exercise 8
+### Exercise 9
 
 You can use comparison operators in your queries
 
@@ -95,7 +95,7 @@ Note, Height has been recorded as a string and there are some missing a height v
 
 Run your initial height query again to confirm your solution works.
 
-Exercise 9
+### Exercise 10
 
 Experiment with the following operators. What does each do?
 
