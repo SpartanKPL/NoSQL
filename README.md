@@ -52,3 +52,17 @@ Sharding is a method of splitting data into 'shards' and storing them across mul
 
 ## Pros and Cons of MongoDB
 ***
+
+### Pros
+
+* More flexible and simple to set up due to enforcing no schema
+* Ability to use sharding to save costs and resources
+* Replica sets prevents/mitigates complete loss of data through having multiple servers with the same data
+* Aggregation functions that allow for the grouping, filtering and transformation of data
+
+
+### Cons
+
+* Updates to shards are not instant across its replicas, this means there is a chance someone could be accessing old or incorrect data
+* It does not support the convenience of traditional joins you see with RDBMSs
+* MongoDB has a size limit of 16mb per document
